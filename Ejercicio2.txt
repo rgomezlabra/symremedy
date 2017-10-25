@@ -1,0 +1,43 @@
+
+Curso CREACIÓN DE APLICACIONES WEB CON FRAMEWORK SYMFONY2 PARA DESARROLLO PHP
+Ejercicio 2
+===========
+
+- Configurar motor de BD
+Editar app/config/config.yml estableciendo parámetros generales para pdo_sqlite
+	# sed -i 's/pdo_mysql/pdo_sqlite/' app/config/config.yml
+Editar app/config/parameters.yml indicando el camino del fichero de BD en '%kernel.root_dir%/data/blog.sqlite'
+	sed -i '/database_host/ i \    database_driver: pdo_sqlite\n    database_path: '%kernel.root_dir%/data/symremedy.sqlite'
+' app/config/parameters.yml
+Comentar la configuración para MySQL en ambos ficheros.
+
+- Crear la BD:
+	mkdir app/data
+	php bin/console doctrine:database:create
+
+- Crear las entidades (user, issue, container, resource):
+	mkdir -p src/Us/SymremedyBundle/Entity/Repository
+Crear ficheros src/Us/BlogBundle/Entity/Entidad.php con las clases Entidad, incluyendo atributos, índices, mapeos y relaciones).
+Crear getters y setters:
+	php bin/console doctrine:generate:entities Us/SymremedyBundle/Entity/User
+...
+(voy por aquí, solo se ha creado la entidad User)
+...
+	php bin/console doctrine:generate:entities Us/SymremedyBundle/Entity/Issue
+	php bin/console doctrine:generate:entities Us/SymremedyBundle/Entity/Container
+	php bin/console doctrine:generate:entities Us/SymremedyBundle/Entity/Resource
+Actualizar esquema de la BD:
+	php bin/console doctrine:schema:update --force
+
+- Crear los controladores:
+Crear ficheros src/Us/SymremedyBundle/Controller/EntidadController.php (para cada entidad) con las funciones solicitadas.
+Actualizar las rutas en src/Us/SymremedyBundle/Resources/config/routing.yml
+
+- Crear los repositorios:
+Crear ficheros src/Us/SymremedyBundle/Entity/Repository/EntidadRepository.php (para cada entidad) con las funciones de acceso a la BD.
+
+- Subir código al repositorio Git:
+	git add .
+	git status
+	git commit -m "Ejercicio 2: crear primera entidad de la BD.'
+	git pull

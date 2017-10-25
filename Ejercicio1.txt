@@ -1,0 +1,47 @@
+
+Curso CREACIÓN DE APLICACIONES WEB CON FRAMEWORK SYMFONY2 PARA DESARROLLO PHP
+Ejercicio 1
+===========
+
+- Configurar PHP en Ubuntu 16.04:
+sudo apt update
+sudo apt install php-intl php-sqlite3 php-mysql composer
+sudo sed -i 's!;date.timezone =.*!date.timezone = Europe/Madrid!' /etc/php/7.0/apache2/php.ini
+sudo sed -i 's!;date.timezone =.*!date.timezone = Europe/Madrid!' /etc/php/7.0/cli/php.ini
+sudo service apache2 restart
+
+- Instalar Symfony:
+sudo curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
+sudo chmod +x /usr/local/bin/symfony
+
+- Crear proyecto:
+symfony new curso-symfony
+cd curso-symfony
+
+- Crear bundle:
+php bin/console generate:bundle --namespace=Us/SymremedyBundle --format=yml --no-interaction
+
+- Si da error, registrar bundle en composer.json tras la aplicación por defecto y regenerar.
+sed -i '/AppBundle/ a ,"Us\\\\SymremedyBundle\\\\": "src/Us/SymremedyBundle"' composer.json
+composer dump-autoload
+
+
+- Añadir la ruta /symremedy/home/{name} en el fichero src/Us/SymremedyBundle/Resources/config/routing.yml
+
+- Añadir la función homeAction en el fichero de controlador src/Us/SymremedyBundle/Controller/DefaultController.php para usar la plantilla
+
+- Editar el fichero de plantilla src/Us/SymremedyBundle/Resources/views/Default/index.html.twig para saludar al usuario
+echo 'Hola {{ name }}.' > src/Us/SymremedyBundle/Resources/views/Default/index.html.twig
+
+- Lanzar el proyecto
+php bin/console server:run
+
+- Probar en la navegador la URL http://localhost:8000/symremedy/home/Ramon
+Hola Ramon.
+
+- Crear proyecto en Github
+git init
+git add .
+git status
+git commit -m "Ejercicio 1 del Curso Symfony"
+

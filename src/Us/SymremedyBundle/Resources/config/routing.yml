@@ -1,0 +1,9 @@
+us_symremedy_homepage:
+    path:     /
+    defaults: { _controller: UsSymremedyBundle:Default:index }
+
+symremedy_home:
+    path:     /symremedy/home/{name}
+    defaults: { _controller: UsSymremedyBundle:Default:home }
+
+

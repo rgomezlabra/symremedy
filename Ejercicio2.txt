@@ -6,28 +6,33 @@ Ejercicio 2
 - Configurar motor de BD
 Editar app/config/config.yml estableciendo parámetros generales para pdo_sqlite
 	# sed -i 's/pdo_mysql/pdo_sqlite/' app/config/config.yml
-Editar app/config/parameters.yml indicando el camino del fichero de BD en '%kernel.root_dir%/data/blog.sqlite'
-	sed -i '/database_host/ i \    database_driver: pdo_sqlite\n    database_path: '%kernel.root_dir%/data/symremedy.sqlite'
-' app/config/parameters.yml
+Editar app/config/parameters.yml indicando el camino del fichero de BD en '%kernel.root_dir%/data/symremedy.sqlite'
+	sed -i "/database_host/ i \    database_driver: pdo_sqlite\n    database_path: '%kernel.root_dir%/data/symremedy.sqlite'
+" app/config/parameters.yml
 Comentar la configuración para MySQL en ambos ficheros.
 
 - Crear la BD:
 	mkdir app/data
 	php bin/console doctrine:database:create
 
-- Crear las entidades (user, issue, container, resource):
+- Crear las entidades (user, issue, container, device):
 	mkdir -p src/Us/SymremedyBundle/Entity/Repository
-Crear ficheros src/Us/BlogBundle/Entity/Entidad.php con las clases Entidad, incluyendo atributos, índices, mapeos y relaciones).
+Crear las clases simples Category y State
+	php bin/console doctrine:generate:entity --entity="UsSymremedyBundle:Category" \
+		--no-interaction --fields="name:string(50)"
+	php bin/console doctrine:generate:entity --entity="UsSymremedyBundle:State" \
+		--no-interaction --fields="name:string(50)"
+
+Crear ficheros src/Us/SymremedyBundle/Entity/Entidad.php con las clases Entidad, incluyendo atributos, índices, mapeos y relaciones).
 Crear getters y setters:
-	php bin/console doctrine:generate:entities Us/SymremedyBundle/Entity/User
-...
+	php bin/console doctrine:generate:entities "UsSymremedyBundle:User"
+	php bin/console doctrine:generate:entities "UsSymremedyBundle:Container"
 (voy por aquí, solo se ha creado la entidad User)
-...
-	php bin/console doctrine:generate:entities Us/SymremedyBundle/Entity/Issue
-	php bin/console doctrine:generate:entities Us/SymremedyBundle/Entity/Container
-	php bin/console doctrine:generate:entities Us/SymremedyBundle/Entity/Resource
+	php bin/console doctrine:generate:entities "UsSymremedyBundle:Device
+	php bin/console doctrine:generate:entities "UsSymremedyBundle:Issue
 Actualizar esquema de la BD:
 	php bin/console doctrine:schema:update --force
+...
 
 - Crear los controladores:
 Crear ficheros src/Us/SymremedyBundle/Controller/EntidadController.php (para cada entidad) con las funciones solicitadas.
@@ -39,5 +44,5 @@ Crear ficheros src/Us/SymremedyBundle/Entity/Repository/EntidadRepository.php (p
 - Subir código al repositorio Git:
 	git add .
 	git status
-	git commit -m "Ejercicio 2: crear primera entidad de la BD.'
-	git pull
+	git commit -m "Ejercicio 2: Uso de Doctrine.'
+	git push origin master

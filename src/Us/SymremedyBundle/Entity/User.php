@@ -1,11 +1,12 @@
 <?php
-// Class: User
+
 namespace Us\SymremedyBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
+
 /**
-* @ORM\Entity(repositoryClass="Us\SymremedyBundle\Entity\Repository\UserRepository")
-* @ORM\Table(name="user")
-*/
+ * @ORM\Entity(repositoryClass="Us\SymremedyBundle\Entity\Repository\UserRepository")
+ * @ORM\Table(name="user")
+ */
 Class User {
     /**
      * @ORM\Id
@@ -18,9 +19,13 @@ Class User {
      */
     protected $username;
     /**
-     * @ORM\Column(name="fullname", type="string", length=100)
+     * @ORM\Column(name="firstname", type="string", length=50)
      */
-    protected $fullname;
+    protected $firstname;
+    /**
+     * @ORM\Column(name="lastname", type="string", length=50)
+     */
+    protected $lastname;
     /**
      * @ORM\Column(name="password", type="string", length=56)
      */
@@ -61,27 +66,51 @@ Class User {
     }
 
     /**
-     * Set fullname
+     * Set firstname
      *
-     * @param string $fullname
+     * @param string $firstname
      *
      * @return User
      */
-    public function setFullname($fullname)
+    public function setFirstname($firstname)
     {
-        $this->fullname = $fullname;
+        $this->firstname = $firstname;
 
         return $this;
     }
 
     /**
-     * Get fullname
+     * Get firstname
      *
      * @return string
      */
-    public function getFullname()
+    public function getFirstname()
     {
-        return $this->fullname;
+        return $this->firstname;
+    }
+
+    /**
+     * Set lastname
+     *
+     * @param string $lastname
+     *
+     * @return User
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * Get lastname
+     *
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
     }
 
     /**

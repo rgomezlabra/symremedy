@@ -2,8 +2,11 @@ us_symremedy_homepage:
     path:     /
     defaults: { _controller: UsSymremedyBundle:Default:index }
 
-symremedy_home:
-    path:     /symremedy/home/{name}
-    defaults: { _controller: UsSymremedyBundle:Default:home }
+symremedy_container_create:
+    path:     /symremedy/container/create
+    defaults: { _controller: UsSymremedyBundle:Container:create}
 
+symremedy_container_list:
+    path:     /symremedy/container/list
+    defaults: { _controller: UsSymremedyBundle:Container:list}
 

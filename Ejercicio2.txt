@@ -27,16 +27,15 @@ Crear ficheros src/Us/SymremedyBundle/Entity/Entidad.php con las clases Entidad,
 Crear getters y setters:
 	php bin/console doctrine:generate:entities "UsSymremedyBundle:User"
 	php bin/console doctrine:generate:entities "UsSymremedyBundle:Container"
-(voy por aquí, solo se ha creado la entidad User)
 	php bin/console doctrine:generate:entities "UsSymremedyBundle:Device
 	php bin/console doctrine:generate:entities "UsSymremedyBundle:Issue
 Actualizar esquema de la BD:
 	php bin/console doctrine:schema:update --force
-...
 
 - Crear los controladores:
 Crear ficheros src/Us/SymremedyBundle/Controller/EntidadController.php (para cada entidad) con las funciones solicitadas.
 Actualizar las rutas en src/Us/SymremedyBundle/Resources/config/routing.yml
+Crear las plantillas web: src/Us/SymremedyBundle/Resources/views/*/*.html.twig
 
 - Crear los repositorios:
 Crear ficheros src/Us/SymremedyBundle/Entity/Repository/EntidadRepository.php (para cada entidad) con las funciones de acceso a la BD.

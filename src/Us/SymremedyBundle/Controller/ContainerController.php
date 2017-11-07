@@ -4,7 +4,7 @@ namespace Us\SymremedyBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Us\SymremedyBundle\Entity\Container;
+use Us\SymremedyBundle\Entity\Container\Container;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -73,7 +73,7 @@ class ContainerController extends Controller
         }
         $containers = $this->getDoctrine()->getRepository(Container::class)->findBy(
                       array(), array('name' => $listOrder));
-        return $this->render('UsSymremedyBundle:Container:list.html.twig', $containers);
+        return $this->render('UsSymremedyBundle:Container:list.html.twig', array('containers' => $containers));
     }
 
     /**

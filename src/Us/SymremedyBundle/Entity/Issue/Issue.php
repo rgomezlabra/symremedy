@@ -1,6 +1,6 @@
 <?php
 
-namespace Us\SymremedyBundle\Entity;
+namespace Us\SymremedyBundle\Entity\Issue;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,7 +27,7 @@ Class Issue {
      */
     protected $explanation;
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="Us\SymremedyBundle\Entity\User\User")
      * @ORM\JoinColumn(name="creator_id", referencedColumnName="id")
      */
     protected $creator;
@@ -36,7 +36,7 @@ Class Issue {
      */
     protected $createdat;
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="Us\SymremedyBundle\Entity\User\User")
      * @ORM\JoinColumn(name="rsolver_id", referencedColumnName="id")
      */
     protected $rsolver;
@@ -45,15 +45,16 @@ Class Issue {
      */
     protected $resolvedat;
     /**
-     * @ORM\ManyToOne(targetEntity="Container")
+     * @ORM\ManyToOne(targetEntity="Us\SymremedyBundle\Entity\Container\Container")
      * @ORM\JoinColumn(name="container_id", referencedColumnName="id")
      */
     protected $container;
     /**
-     * @ORM\ManyToOne(targetEntity="State")
-     * @ORM\JoinColumn(name="state_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Status")
+     * @ORM\JoinColumn(name="status_id", referencedColumnName="id")
      */
-    protected $state;
+    protected $status;
+
 
     /**
      * Get id
@@ -188,11 +189,11 @@ Class Issue {
     /**
      * Set creator
      *
-     * @param \Us\SymremedyBundle\Entity\User $creator
+     * @param \Us\SymremedyBundle\Entity\User\User $creator
      *
      * @return Issue
      */
-    public function setCreator(\Us\SymremedyBundle\Entity\User $creator = null)
+    public function setCreator(\Us\SymremedyBundle\Entity\User\User $creator = null)
     {
         $this->creator = $creator;
 
@@ -202,7 +203,7 @@ Class Issue {
     /**
      * Get creator
      *
-     * @return \Us\SymremedyBundle\Entity\User
+     * @return \Us\SymremedyBundle\Entity\User\User
      */
     public function getCreator()
     {
@@ -212,11 +213,11 @@ Class Issue {
     /**
      * Set rsolver
      *
-     * @param \Us\SymremedyBundle\Entity\User $rsolver
+     * @param \Us\SymremedyBundle\Entity\User\User $rsolver
      *
      * @return Issue
      */
-    public function setRsolver(\Us\SymremedyBundle\Entity\User $rsolver = null)
+    public function setRsolver(\Us\SymremedyBundle\Entity\User\User $rsolver = null)
     {
         $this->rsolver = $rsolver;
 
@@ -226,7 +227,7 @@ Class Issue {
     /**
      * Get rsolver
      *
-     * @return \Us\SymremedyBundle\Entity\User
+     * @return \Us\SymremedyBundle\Entity\User\User
      */
     public function getRsolver()
     {
@@ -236,11 +237,11 @@ Class Issue {
     /**
      * Set container
      *
-     * @param \Us\SymremedyBundle\Entity\Container $container
+     * @param \Us\SymremedyBundle\Entity\Container\Container $container
      *
      * @return Issue
      */
-    public function setContainer(\Us\SymremedyBundle\Entity\Container $container = null)
+    public function setContainer(\Us\SymremedyBundle\Entity\Container\Container $container = null)
     {
         $this->container = $container;
 
@@ -250,7 +251,7 @@ Class Issue {
     /**
      * Get container
      *
-     * @return \Us\SymremedyBundle\Entity\Container
+     * @return \Us\SymremedyBundle\Entity\Container\Container
      */
     public function getContainer()
     {
@@ -258,26 +259,26 @@ Class Issue {
     }
 
     /**
-     * Set state
+     * Set status
      *
-     * @param \Us\SymremedyBundle\Entity\State $state
+     * @param \Us\SymremedyBundle\Entity\Issue\Status $status
      *
      * @return Issue
      */
-    public function setState(\Us\SymremedyBundle\Entity\State $state = null)
+    public function setStatus(\Us\SymremedyBundle\Entity\Issue\Status $status = null)
     {
-        $this->state = $state;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get state
+     * Get status
      *
-     * @return \Us\SymremedyBundle\Entity\State
+     * @return \Us\SymremedyBundle\Entity\Issue\Status
      */
-    public function getState()
+    public function getStatus()
     {
-        return $this->state;
+        return $this->status;
     }
 }

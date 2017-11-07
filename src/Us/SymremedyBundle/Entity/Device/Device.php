@@ -1,6 +1,6 @@
 <?php
 
-namespace Us\SymremedyBundle\Entity;
+namespace Us\SymremedyBundle\Entity\Device;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,7 +23,7 @@ Class Device {
      */
     protected $description;
     /**
-     * @ORM\ManyToOne(targetEntity="Container")
+     * @ORM\ManyToOne(targetEntity="Us\SymremedyBundle\Entity\Container\Container")
      * @ORM\JoinColumn(name="container_id", referencedColumnName="id")
      */
     protected $container;
@@ -33,10 +33,10 @@ Class Device {
      */
     protected $category;
     /**
-     * @ORM\ManyToOne(targetEntity="State")
-     * @ORM\JoinColumn(name="state_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Status")
+     * @ORM\JoinColumn(name="status_id", referencedColumnName="id")
      */
-    protected $state;
+    protected $status;
     /**
      * @ORM\Column(name="acquiredat", type="date")
      */
@@ -45,6 +45,7 @@ Class Device {
      * @ORM\Column(name="warrantyend", type="date")
      */
     protected $warrantyend;
+
 
     /**
      * Get id
@@ -155,11 +156,11 @@ Class Device {
     /**
      * Set container
      *
-     * @param \Us\SymremedyBundle\Entity\Container $container
+     * @param \Us\SymremedyBundle\Entity\Container\Container $container
      *
      * @return Device
      */
-    public function setContainer(\Us\SymremedyBundle\Entity\Container $container = null)
+    public function setContainer(\Us\SymremedyBundle\Entity\Container\Container $container = null)
     {
         $this->container = $container;
 
@@ -169,7 +170,7 @@ Class Device {
     /**
      * Get container
      *
-     * @return \Us\SymremedyBundle\Entity\Container
+     * @return \Us\SymremedyBundle\Entity\Container\Container
      */
     public function getContainer()
     {
@@ -179,11 +180,11 @@ Class Device {
     /**
      * Set category
      *
-     * @param \Us\SymremedyBundle\Entity\Category $category
+     * @param \Us\SymremedyBundle\Entity\Device\Category $category
      *
      * @return Device
      */
-    public function setCategory(\Us\SymremedyBundle\Entity\Category $category = null)
+    public function setCategory(\Us\SymremedyBundle\Entity\Device\Category $category = null)
     {
         $this->category = $category;
 
@@ -193,7 +194,7 @@ Class Device {
     /**
      * Get category
      *
-     * @return \Us\SymremedyBundle\Entity\Category
+     * @return \Us\SymremedyBundle\Entity\Device\Category
      */
     public function getCategory()
     {
@@ -201,26 +202,26 @@ Class Device {
     }
 
     /**
-     * Set state
+     * Set status
      *
-     * @param \Us\SymremedyBundle\Entity\State $state
+     * @param \Us\SymremedyBundle\Entity\Device\Status $status
      *
      * @return Device
      */
-    public function setState(\Us\SymremedyBundle\Entity\State $state = null)
+    public function setStatus(\Us\SymremedyBundle\Entity\Device\Status $status = null)
     {
-        $this->state = $state;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get state
+     * Get status
      *
-     * @return \Us\SymremedyBundle\Entity\State
+     * @return \Us\SymremedyBundle\Entity\Device\Status
      */
-    public function getState()
+    public function getStatus()
     {
-        return $this->state;
+        return $this->status;
     }
 }

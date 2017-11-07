@@ -1,19 +1,19 @@
 <?php
 
-namespace Us\SymremedyBundle\Entity;
+namespace Us\SymremedyBundle\Entity\Issue;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Category
+ * Status
  *
- * @ORM\Table(name="category")
- * @ORM\Entity(repositoryClass="Us\SymremedyBundle\Repository\CategoryRepository")
+ * @ORM\Table(name="issue_status")
+ * @ORM\Entity(repositoryClass="Us\SymremedyBundle\Repository\Issue\StatusRepository")
  */
-class Category
+class Status
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -44,7 +44,7 @@ class Category
      *
      * @param string $name
      *
-     * @return Category
+     * @return Status
      */
     public function setName($name)
     {

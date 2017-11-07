@@ -1,19 +1,19 @@
 <?php
 
-namespace Us\SymremedyBundle\Entity;
+namespace Us\SymremedyBundle\Entity\Device;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * State
+ * Status
  *
- * @ORM\Table(name="state")
- * @ORM\Entity(repositoryClass="Us\SymremedyBundle\Repository\StateRepository")
+ * @ORM\Table(name="device_status")
+ * @ORM\Entity(repositoryClass="Us\SymremedyBundle\Repository\Device\StatusRepository")
  */
-class State
+class Status
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -44,7 +44,7 @@ class State
      *
      * @param string $name
      *
-     * @return State
+     * @return Status
      */
     public function setName($name)
     {

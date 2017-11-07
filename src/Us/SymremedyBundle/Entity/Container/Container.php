@@ -1,6 +1,6 @@
 <?php
 
-namespace Us\SymremedyBundle\Entity;
+namespace Us\SymremedyBundle\Entity\Container;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,7 +25,7 @@ Class Container {
     /**
      * @ORM\Column(name="capacity", type="integer", options={"unsigned":true, "default":0})
      */
-    protected $capacity = 0;
+    protected $capacity;
     /**
      * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
@@ -40,6 +40,7 @@ Class Container {
      * @ORM\JoinColumn(name="parent", referencedColumnName="id")
      */
     private $parent;
+
     /**
      * Constructor
      */
@@ -133,11 +134,11 @@ Class Container {
     /**
      * Set category
      *
-     * @param \Us\SymremedyBundle\Entity\Category $category
+     * @param \Us\SymremedyBundle\Entity\Container\Category $category
      *
      * @return Container
      */
-    public function setCategory(\Us\SymremedyBundle\Entity\Category $category = null)
+    public function setCategory(\Us\SymremedyBundle\Entity\Container\Category $category = null)
     {
         $this->category = $category;
 
@@ -147,7 +148,7 @@ Class Container {
     /**
      * Get category
      *
-     * @return \Us\SymremedyBundle\Entity\Category
+     * @return \Us\SymremedyBundle\Entity\Container\Category
      */
     public function getCategory()
     {
@@ -157,11 +158,11 @@ Class Container {
     /**
      * Add child
      *
-     * @param \Us\SymremedyBundle\Entity\Container $child
+     * @param \Us\SymremedyBundle\Entity\Container\Container $child
      *
      * @return Container
      */
-    public function addChild(\Us\SymremedyBundle\Entity\Container $child)
+    public function addChild(\Us\SymremedyBundle\Entity\Container\Container $child)
     {
         $this->children[] = $child;
 
@@ -171,9 +172,9 @@ Class Container {
     /**
      * Remove child
      *
-     * @param \Us\SymremedyBundle\Entity\Container $child
+     * @param \Us\SymremedyBundle\Entity\Container\Container $child
      */
-    public function removeChild(\Us\SymremedyBundle\Entity\Container $child)
+    public function removeChild(\Us\SymremedyBundle\Entity\Container\Container $child)
     {
         $this->children->removeElement($child);
     }
@@ -191,11 +192,11 @@ Class Container {
     /**
      * Set parent
      *
-     * @param \Us\SymremedyBundle\Entity\Container $parent
+     * @param \Us\SymremedyBundle\Entity\Container\Container $parent
      *
      * @return Container
      */
-    public function setParent(\Us\SymremedyBundle\Entity\Container $parent = null)
+    public function setParent(\Us\SymremedyBundle\Entity\Container\Container $parent = null)
     {
         $this->parent = $parent;
 
@@ -205,7 +206,7 @@ Class Container {
     /**
      * Get parent
      *
-     * @return \Us\SymremedyBundle\Entity\Container
+     * @return \Us\SymremedyBundle\Entity\Container\Container
      */
     public function getParent()
     {

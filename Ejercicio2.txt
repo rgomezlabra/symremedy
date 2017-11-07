@@ -18,17 +18,21 @@ Comentar la configuración para MySQL en ambos ficheros.
 - Crear las entidades (user, issue, container, device):
 	mkdir -p src/Us/SymremedyBundle/Entity/Repository
 Crear las clases simples Category y State
-	php bin/console doctrine:generate:entity --entity="UsSymremedyBundle:Category" \
-		--no-interaction --fields="name:string(50)"
-	php bin/console doctrine:generate:entity --entity="UsSymremedyBundle:State" \
-		--no-interaction --fields="name:string(50)"
+	php bin/console doctrine:generate:entity --no-interaction \
+		--entity="UsSymremedyBundle:Container/Category" --fields="name:string(50)"
+	php bin/console doctrine:generate:entity --no-interaction \
+		--entity="UsSymremedyBundle:Device/Category" --fields="name:string(50)"
+	php bin/console doctrine:generate:entity --no-interaction \
+		--entity="UsSymremedyBundle:Device/Status" --fields="name:string(50)"
+	php bin/console doctrine:generate:entity --no-interaction \
+		 --entity="UsSymremedyBundle:Issue/Status" --fields="name:string(50)"
 
-Crear ficheros src/Us/SymremedyBundle/Entity/Entidad.php con las clases Entidad, incluyendo atributos, índices, mapeos y relaciones).
+Crear ficheros src/Us/SymremedyBundle/Entity/Entidad/Entidad.php con las clases Entidad, incluyendo atributos, índices, mapeos y relaciones).
 Crear getters y setters:
-	php bin/console doctrine:generate:entities "UsSymremedyBundle:User"
-	php bin/console doctrine:generate:entities "UsSymremedyBundle:Container"
-	php bin/console doctrine:generate:entities "UsSymremedyBundle:Device
-	php bin/console doctrine:generate:entities "UsSymremedyBundle:Issue
+	php bin/console doctrine:generate:entities "UsSymremedyBundle:User/User"
+	php bin/console doctrine:generate:entities "UsSymremedyBundle:Container/Container"
+	php bin/console doctrine:generate:entities "UsSymremedyBundle:Device/Device"
+	php bin/console doctrine:generate:entities "UsSymremedyBundle:Issue/Issue"
 Actualizar esquema de la BD:
 	php bin/console doctrine:schema:update --force
 

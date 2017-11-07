@@ -1,0 +1,6 @@
+<h1>Lista de Espacios</h1>
+<ul>
+    {% for container in containers %}
+        <li>{{ container.name }}: {{ container.description }} (aforo: {{ container.capacity }})</li>
+    {% endfor %}
+</ul>

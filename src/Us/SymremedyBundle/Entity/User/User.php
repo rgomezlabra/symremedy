@@ -1,6 +1,6 @@
 <?php
 
-namespace Us\SymremedyBundle\Entity;
+namespace Us\SymremedyBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +30,14 @@ Class User {
      * @ORM\Column(name="password", type="string", length=56)
      */
     protected $password;
+    /**
+     * @ORM\Column(name="email", type="string", length=50)
+     */
+    protected $email;
+    /**
+     * @ORM\Column(name="createdat", type="date")
+     */
+    protected $createdat;
 
     /**
      * Get id
@@ -135,5 +143,53 @@ Class User {
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set createdat
+     *
+     * @param \DateTime $createdat
+     *
+     * @return User
+     */
+    public function setCreatedat($createdat)
+    {
+        $this->createdat = $createdat;
+
+        return $this;
+    }
+
+    /**
+     * Get createdat
+     *
+     * @return \DateTime
+     */
+    public function getCreatedat()
+    {
+        return $this->createdat;
     }
 }

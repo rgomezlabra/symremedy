@@ -1,5 +1,6 @@
 us_symremedy:
-    resource: "@UsSymremedyBundle/Resources/config/routing.yml"
+    resource: '@UsSymremedyBundle/Controller/'
+    type: annotation
     prefix:   /
 
 app:

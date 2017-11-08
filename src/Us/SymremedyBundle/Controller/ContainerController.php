@@ -7,12 +7,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Us\SymremedyBundle\Entity\Container\Container;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 
 class ContainerController extends Controller
 {
     /**
-     * Route("/symremedy/container/create")
+     * @Route("/symremedy/container/create")
      */
     public function createAction()
     {
@@ -27,17 +28,17 @@ class ContainerController extends Controller
     }
 
     /**
-     * Route(
+     * @Route(
      *     "/symremedy/container/{id}/delete",
      *     requirements={"id": "\d+"}
      * )
      */
-    public function deleteAction($containerId)
+    public function deleteAction($id)
     {
 	$em = $this->getDoctrine()->getManager();
-	$container = $em->getRepository(Container::class)->find($containerId);
+	$container = $em->getRepository(Container::class)->find($id);
         if (!$container) {
-            throw $this->createNotFoundException('No container found for id '.$containerId);
+            throw $this->createNotFoundException('No container found for id '.$id);
         }
 	$em->remove($container);
 	$em->flush();
@@ -45,35 +46,37 @@ class ContainerController extends Controller
     }
 
     /**
-     * Route(
+     * @Route(
      *     "/symremedy/container/{id}/show",
      *     requirements={"id": "\d+"}
      * )
      */
-    public function showAction($containerId)
+    public function showAction($id)
     {
-	$container = $this->getDoctrine()->getRepository(Container::class)->find($containerId);
+	$container = $this->getDoctrine()->getRepository(Container::class)->find($id);
         if (!$container) {
-            throw $this->createNotFoundException('No container found for id '.$containerId);
+            throw $this->createNotFoundException('No container found for id '.$id);
         }
-        return $this->render('UsSymremedyBundle:Default:show.html.twig', $container);
+        return $this->render('UsSymremedyBundle:Container:show.html.twig',
+                      array('container' => $container));
     }
 
     /**
-     * Route(
+     * @Route(
      *     "/symremedy/container/list/{order}",
      *     defaults={"order": "ASC"},
      *     requirements={"order": "ASC|DESC"}
      * )
      */
-    public function listAction($listOrder='ASC')
+    public function listAction($order)
     {
-        if ($listOrder !== 'ASC' and $order !== 'DESC') {
+        if ($order !== 'ASC' and $order !== 'DESC') {
             throw $this->createNotFoundException('List order must be ASC or DESC');
         }
         $containers = $this->getDoctrine()->getRepository(Container::class)->findBy(
-                      array(), array('name' => $listOrder));
-        return $this->render('UsSymremedyBundle:Container:list.html.twig', array('containers' => $containers));
+                      array(), array('name' => $order));
+        return $this->render('UsSymremedyBundle:Container:list.html.twig',
+                      array('containers' => $containers));
     }
 
     /**

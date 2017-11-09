@@ -36,9 +36,13 @@ Crear getters y setters:
 Actualizar esquema de la BD:
 	php bin/console doctrine:schema:update --force
 
+- Configurar rutas automáticas:
+Editar el fichero app/config/routing.yml y modificar las propiedades de "us_symremedy" indicando "type: annotation".
+Listar las rutas definidas:
+	php bin/console debug:router
+
 - Crear los controladores:
-Crear ficheros src/Us/SymremedyBundle/Controller/EntidadController.php (para cada entidad) con las funciones solicitadas.
-Actualizar las rutas en src/Us/SymremedyBundle/Resources/config/routing.yml
+Crear ficheros src/Us/SymremedyBundle/Controller/EntidadController.php (para cada entidad) con las acciones solicitadas, indicando en el comentario la sintaxis de cada ruta con "@Route(...)".
 Crear las plantillas web: src/Us/SymremedyBundle/Resources/views/*/*.html.twig
 
 - Crear los repositorios:

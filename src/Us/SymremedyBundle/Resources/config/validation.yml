@@ -1,0 +1,10 @@
+Us\SymremedyBundle\Entity\Container\Container:
+  properties:
+    name:
+    - NotBlank: ~
+    description:
+    - NotBlank: ~
+    capacity:
+    - Type: integer
+
+

@@ -1,6 +1,10 @@
 <h1>Alta de nuevo espacio</h1>
+{% if parent == "" %}
+    <p>Espacio raíz</p>
+{% else %}
+    <p>Espacio padre: {{ parent }}</p>
+{% endif %}
 {{ form_start(form) }}
-{{ form_widget(form) }}
-<input type="submit" />
+    {{ form_widget(form) }}
 {{ form_end(form) }}
 

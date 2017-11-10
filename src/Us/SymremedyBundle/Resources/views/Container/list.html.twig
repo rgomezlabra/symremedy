@@ -1,6 +1,24 @@
 <h1>Lista de Espacios</h1>
-<ul>
+
+{% macro container_tree(containers) %}
+    {% import _self as macros %}
     {% for container in containers %}
-        <li>{{ container.name }}: {{ container.description }} (aforo: {{ container.capacity }})</li>
+        <li>
+            {{ container.name }}: {{ container.description }}
+            {% if container.capacity > 0 %}
+                (aforo: {{ container.capacity }})
+            {% endif %}
+            {% if container.children %}
+                <ul>
+                    {{ macros.container_tree(container.children) }}
+                </ul>
+            {% endif %}
+        </li>
     {% endfor %}
+{% endmacro %}
+
+{% import _self as macros %}
+
+<ul class="container-tree">
+    {{ macros.container_tree(containers) }}
 </ul>

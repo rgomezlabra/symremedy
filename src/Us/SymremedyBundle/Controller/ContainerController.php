@@ -10,8 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 
@@ -44,6 +45,11 @@ class ContainerController extends Controller
                      ->add('name', TextType::class, array('label' => 'Nombre: '))
                      ->add('description', TextType::class, array('label' => 'Descripción: '))
                      ->add('capacity', IntegerType::class, array('label' => 'Aforo: '))
+                     ->add('category', EntityType::class,
+                           array('class' => 'Us\SymremedyBundle\Entity\Container\Category',
+                                 'choice_label' => 'name',
+                                 'required' => false,
+                                 'label' => 'Categoría: '))
                      ->add('save', SubmitType::class, array('label' => 'Crear espacio'))
                      ->getForm();
         // Process request.
@@ -63,6 +69,50 @@ class ContainerController extends Controller
         {
             $response = $this->render('UsSymremedyBundle:Container:new.html.twig',
                              array('form' => $form->createView(), 'parent' => $parentName));
+        }
+	return $response;
+    }
+
+    /**
+     * @Route("/symremedy/container/{id}/edit", requirements={"id" = "\d+"});
+     */
+    public function editAction(Request $request, $id)
+    {
+        $response = null;
+        $em = $this->getDoctrine()->getManager();
+	$container = $em->getRepository(Container::class)->find($id);
+        if (!$container)
+        {
+            throw $this->createNotFoundException('No container found for id '.$id);
+        }
+        // Create form.
+	$form = $this->createFormBuilder($container)
+                     ->add('name', TextType::class, array('label' => 'Nombre: '))
+                     ->add('description', TextType::class, array('label' => 'Descripción: '))
+                     ->add('capacity', IntegerType::class, array('label' => 'Aforo: '))
+                     ->add('category', EntityType::class,
+                           array('class' => 'Us\SymremedyBundle\Entity\Container\Category',
+                                 'choice_label' => 'name',
+                                 'required' => false,
+                                 'label' => 'Categoría: '))
+                     ->add('save', SubmitType::class, array('label' => 'Crear espacio'))
+                     ->getForm();
+        // Process request.
+        $form->handleRequest($request);
+        if ($form->isSubmitted() and $form->isValid())
+        {
+            // Save and show data.
+            $em->persist($container);
+            $em->flush();
+            $response = $this->redirect($this->generateUrl('us_symremedy_container_show',
+                             array('id' => $container->getId())));
+        }
+        if ($response == null)
+        {
+            // Show edition form.
+            $parent = $container->getParent() ? $container->getParent()->getName() : '';
+            $response = $this->render('UsSymremedyBundle:Container:new.html.twig',
+                             array('form' => $form->createView(), 'parent' => $parent));
         }
 	return $response;
     }

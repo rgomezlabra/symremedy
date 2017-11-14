@@ -4,14 +4,20 @@
     {% import _self as macros %}
     {% for container in containers %}
         <li>
+            {% if container.category %}
+                {{ container.category.name }}:
+            {% endif %}
             {{ container.name }}: {{ container.description }}
             {% if container.capacity > 0 %}
                 (aforo: {{ container.capacity }})
             {% endif %}
-            {% if container.children %}
+            <a href="{{ container.id }}/edit">Editar</a>
+            {% if container.children is not empty %}
                 <ul>
                     {{ macros.container_tree(container.children) }}
                 </ul>
+            {% else %}
+                <a href="{{ container.id }}/delete">Borrar</a>
             {% endif %}
         </li>
     {% endfor %}

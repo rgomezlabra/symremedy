@@ -13,11 +13,13 @@
             {% endif %}
             <a href="{{ container.id }}/edit">Editar</a>
             {% if container.children is not empty %}
+                <a href="{{ container.id }}/create">Crear espacio hijo</a>
                 <ul>
                     {{ macros.container_tree(container.children) }}
                 </ul>
             {% else %}
                 <a href="{{ container.id }}/delete">Borrar</a>
+                <a href="{{ container.id }}/create">Crear espacio hijo</a>
             {% endif %}
         </li>
     {% endfor %}
@@ -28,3 +30,5 @@
 <ul class="container-tree">
     {{ macros.container_tree(containers) }}
 </ul>
+<p><a href="create">Crear espacio raíz</a>
+   <a href="categories">Añadir categoría</a></p>

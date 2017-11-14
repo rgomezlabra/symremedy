@@ -1,0 +1,44 @@
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<h1>Categorías de Espacios</h1>
+
+{{ form_start(form) }}
+    <ul id="categories-list"
+        data-prototype="{{ form_widget(form.categories.vars.prototype)|e }}">
+    {% for category in form.categories %}
+        <li>
+            {{ form_errors(category) }}
+            {{ form_widget(category) }}
+        </li>
+    {% endfor %}
+    </ul>
+    <a href="#" id="add-category">Añadir nueva categoría</a>
+{{ form_end(form) }}
+
+<p><a href="list">Volver a lista de espacios</a></p>
+
+<script src="jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+    // keep track of how many fields have been rendered
+    var catCount = '{{ form.categories|length }}';
+
+    jQuery(document).ready(function() {
+        jQuery('#add-category').click(function(e) {
+            e.preventDefault();
+
+            var catList = jQuery('#categories-list');
+
+            // grab the prototype template
+            var newWidget = catList.attr('data-prototype');
+            // replace the "__name__" used in the id and name of the prototype
+            // with a number that's unique to the categories
+            newWidget = newWidget.replace(/__name__/g, catCount);
+            catCount++;
+
+            // create a new list element and add it to the list
+            var newLi = jQuery('<li></li>').html(newWidget);
+            newLi.appendTo(catList);
+        });
+    })
+</script>
+

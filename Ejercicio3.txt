@@ -11,5 +11,8 @@ Crear el fichero de validación para los campos de los formularios en src/Us/Sym
 - Crear vistas de formularios:
 Crear los formularios en las plantillas web: src/Us/SymremedyBundle/Resources/views/*/*.html.twig
 
+- Crear directorio para clases de formularios:
+	mkdir -p src/Us/SymremedyBundle/Form/Type
+
 
 

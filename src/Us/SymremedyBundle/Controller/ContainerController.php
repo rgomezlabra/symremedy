@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Us\SymremedyBundle\Entity\Container\Container;
 use Us\SymremedyBundle\Entity\Container\Category;
+use Us\SymremedyBundle\Form\Type\CategoryType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -29,7 +30,7 @@ class ContainerController extends Controller
         $response = null;
 	$container = new Container();
         $parentName = '';
-        // Check parent.
+        // Checking parent container.
 	$em = $this->getDoctrine()->getManager();
         if ($id != 0)
         {
@@ -42,7 +43,7 @@ class ContainerController extends Controller
                 throw $this->createNotFoundException('No container found for parent id'.$id);
             }
         }
-        // Create form.
+        // Creating form.
 	$form = $this->createFormBuilder($container)
                      ->add('name', TextType::class, array('label' => 'Nombre: '))
                      ->add('description', TextType::class, array('label' => 'Descripción: '))
@@ -54,7 +55,7 @@ class ContainerController extends Controller
                                  'label' => 'Categoría: '))
                      ->add('save', SubmitType::class, array('label' => 'Crear espacio'))
                      ->getForm();
-        // Process request.
+        // Processing request.
         $form->handleRequest($request);
         if ($form->isSubmitted() and $form->isValid())
         {
@@ -80,6 +81,7 @@ class ContainerController extends Controller
      */
     public function editAction(Request $request, $id)
     {
+        // Checking container.
         $response = null;
         $em = $this->getDoctrine()->getManager();
 	$container = $em->getRepository(Container::class)->find($id);
@@ -87,7 +89,7 @@ class ContainerController extends Controller
         {
             throw $this->createNotFoundException('No container found for id '.$id);
         }
-        // Create form.
+        // Creating form.
 	$form = $this->createFormBuilder($container)
                      ->add('name', TextType::class, array('label' => 'Nombre: '))
                      ->add('description', TextType::class, array('label' => 'Descripción: '))
@@ -99,7 +101,7 @@ class ContainerController extends Controller
                                  'label' => 'Categoría: '))
                      ->add('save', SubmitType::class, array('label' => 'Guardar datos'))
                      ->getForm();
-        // Process request.
+        // Processing request.
         $form->handleRequest($request);
         if ($form->isSubmitted() and $form->isValid())
         {
@@ -111,7 +113,7 @@ class ContainerController extends Controller
         }
         if ($response == null)
         {
-            // Show edition form.
+            // Showing edition form.
             $parent = $container->getParent() ? $container->getParent()->getName() : '';
             $response = $this->render('UsSymremedyBundle:Container:edit.html.twig',
                              array('form' => $form->createView(),
@@ -128,12 +130,14 @@ class ContainerController extends Controller
      */
     public function deleteAction($id)
     {
+        // Checking container.
         $em = $this->getDoctrine()->getManager();
         $container = $em->getRepository(Container::class)->find($id);
         if (!$container)
         {
             throw $this->createNotFoundException('No container found for id '.$id);
         }
+        // Removing container.
         $em->remove($container);
         $em->flush();
         return $this->redirectToRoute('us_symremedy_container_list');
@@ -147,11 +151,13 @@ class ContainerController extends Controller
      */
     public function showAction($id)
     {
+        // Checking container.
 	$container = $this->getDoctrine()->getRepository(Container::class)->find($id);
         if (!$container)
         {
             throw $this->createNotFoundException('No container found for id '.$id);
         }
+        // Showing container data.
         return $this->render('UsSymremedyBundle:Container:show.html.twig',
                              array('container' => $container));
     }
@@ -165,12 +171,14 @@ class ContainerController extends Controller
      */
     public function listAction($order)
     {
+        // Retrieving containers list.
         if ($order !== 'ASC' and $order !== 'DESC')
         {
             throw $this->createNotFoundException('List order must be ASC or DESC');
         }
         $containers = $this->getDoctrine()->getRepository(Container::class)->findBy(
                       array('parent' => null), array('name' => $order));
+        // Showing containers tree.
         return $this->render('UsSymremedyBundle:Container:list.html.twig',
                       array('containers' => $containers));
     }
@@ -180,29 +188,33 @@ class ContainerController extends Controller
      */
     public function categoriesAction(Request $request)
     {
+        // Retrieving all categories.
         $em = $this->getDoctrine()->getManager();
 	$categories = $em->getRepository(Category::class)->findAll();
-        // Create form.
+        // Building form.
         $form = $this->createFormBuilder($categories)
                      ->add('categories', CollectionType::class,
-                           array('entry_type' => TextType::class,
+                           array('entry_type' => CategoryType::class,
                                  'allow_add' => true,
                                  'allow_delete' => true,
                                  'delete_empty' => true,
-                                 'prototype' => true))
+                                 'prototype' => true,
+                                 'label' => false))
                      ->add('save', SubmitType::class,
                            array('label' => 'Guardar categorías'))
                      ->getForm();
-        // Process request.
+        // Processing request.
         $form->handleRequest($request);
         if ($form->isSubmitted() and $form->isValid())
         {
-            foreach ($categories as $category)
+            //foreach ($categories as $category)
+            foreach ($form->getData()['categories'] as $category)
             {
 	        $em->persist($category);
             }
 	    $em->flush();
         }
+        // Show form.
         return $this->render('UsSymremedyBundle:Container:categories.html.twig',
                              array('form' => $form->createView()));
     }

@@ -1,6 +1,9 @@
 <h1>Datos del Espacios</h1>
 <ul>
     <li>Identificador: {{ container.id }}</li>
+{% if container.category %}
+    <li>Categoría: {{ container.category.name }}</li>
+{% endif %}
     <li>Nombre: {{ container.name }}</li>
     <li>Descripción: {{ container.description }}</li>
     <li>Aforo: {{ container.capacity }}</li>

@@ -2,9 +2,17 @@
 
 <h1>Categorías de Espacios</h1>
 
+
+<p>{{ dump() }}</p>
+
 {{ form_start(form) }}
     <ul id="categories-list"
         data-prototype="{{ form_widget(form.categories.vars.prototype)|e }}">
+    {% for category in form.vars.value %}
+        {% if category.name is defined %}
+            <li>{{ category.name }}</li>
+        {% endif %}
+    {% endfor %}
     {% for category in form.categories %}
         <li>
             {{ form_errors(category) }}

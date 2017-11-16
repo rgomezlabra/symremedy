@@ -8,9 +8,7 @@
                 {{ container.category.name }}:
             {% endif %}
             {{ container.name }}: {{ container.description }}
-            {% if container.capacity > 0 %}
-                (aforo: {{ container.capacity }})
-            {% endif %}
+            <a href="{{ container.id }}/show">Mostrar</a>
             <a href="{{ container.id }}/edit">Editar</a>
             {% if container.children is not empty %}
                 <a href="{{ container.id }}/create">Crear espacio hijo</a>
@@ -18,7 +16,7 @@
                     {{ macros.container_tree(container.children) }}
                 </ul>
             {% else %}
-                <a href="{{ container.id }}/delete">Borrar</a>
+                <a href="{{ container.id }}/delete" onclick="return confirm('¿Borrar espacio {{ container.name }}?')">Borrar</a>
                 <a href="{{ container.id }}/create">Crear espacio hijo</a>
             {% endif %}
         </li>

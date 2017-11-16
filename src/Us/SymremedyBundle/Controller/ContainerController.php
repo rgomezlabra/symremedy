@@ -188,6 +188,7 @@ class ContainerController extends Controller
      */
     public function categoriesAction(Request $request)
     {
+        $response = null;
         // Retrieving all categories.
         $em = $this->getDoctrine()->getManager();
 	$categories = $em->getRepository(Category::class)->findAll();
@@ -213,10 +214,15 @@ class ContainerController extends Controller
 	        $em->persist($category);
             }
 	    $em->flush();
+	    $response = $this->redirect($this->generateUrl('us_symremedy_container_list'));
         }
         // Show form.
-        return $this->render('UsSymremedyBundle:Container:categories.html.twig',
-                             array('form' => $form->createView()));
+        if ($response == null)
+        {
+            $response = $this->render('UsSymremedyBundle:Container:categories.html.twig',
+                                 array('form' => $form->createView()));
+        }
+        return $response;
     }
 
 }

@@ -198,6 +198,7 @@ class ContainerController extends Controller
                            array('entry_type' => CategoryType::class,
                                  'allow_add' => true,
                                  'allow_delete' => true,
+                                 'by_reference' => false,
                                  'delete_empty' => true,
                                  'prototype' => true,
                                  'label' => false))

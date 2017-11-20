@@ -1,0 +1,19 @@
+<h1>Lista de Dispositivos</h1>
+
+<ul>
+    {% for device in devices %}
+        <li>
+            {% if device.category %}
+                {{ device.category.name }}:
+            {% endif %}
+            {{ device.name }}: {{ container.description }}
+            <a href="{{ device.id }}/show">Mostrar</a>
+            <a href="{{ device.id }}/edit">Editar</a>
+            <a href="{{ device.id }}/delete" onclick="return confirm('¿Borrar espacio {{ container.name }}?')">Borrar</a>
+        </li>
+    {% endfor %}
+</ul>
+<!--
+<p><a href="create">Crear dispositivo</a>
+   <a href="categories">Añadir categoría</a></p>
+-->

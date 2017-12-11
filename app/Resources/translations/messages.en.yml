@@ -1,0 +1,23 @@
+add.categories: Add categories
+capacity: Capacity
+category: Category
+containers.list: Containers List
+create.child.container: Create child container
+create.container: Create container
+create.root.container: Create root container
+delete: Delete
+delete.container: Delete container
+description: Description
+edit: Edit
+edit.container: Edit container
+identificator: Identificator
+list: List
+list.order: List order must be ASC or DESC
+name: Name
+no.container.found: No container found for id
+no.parent.found: No container found for parent id
+no.children: Sin recursos ni espacios dependientes
+parent.container: Parent container
+return.containers.list: Return to containers list
+root.container: Root container
+show: Show

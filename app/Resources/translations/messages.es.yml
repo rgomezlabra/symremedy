@@ -1,0 +1,22 @@
+add.categories: Añadir categorías
+capacity: Aforo
+category: Categoría
+containers.list: Lista de Espacios
+create.child.container: Crear espacio hijo
+create.container: Crear espacio
+create.root.container: Crear espacio raíz
+delete: Borrar
+delete.container: ¿Borrar contenedor
+description: Descripción
+edit: Editar
+edit.container: Editar espacio
+identificator: Identificador
+list: Listar
+list.order: El orden de listado debe ser ASC o DESC
+name: Nombre
+no.container.found: Contenedor no encontrado para el id.
+no.parent.found: Contenedor padre no encontrado para el id.
+parent.container: Espacio padre
+return.containers.list: Volver a lista de espacios
+root.container: Espacio contenedor raíz
+show: Mostrar

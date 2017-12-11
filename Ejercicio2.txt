@@ -5,7 +5,7 @@ Ejercicio 2
 
 - Configurar motor de BD
 Editar app/config/config.yml estableciendo parámetros generales para pdo_sqlite
-	# sed -i 's/pdo_mysql/pdo_sqlite/' app/config/config.yml
+	sed -i 's/pdo_mysql/pdo_sqlite/' app/config/config.yml
 Editar app/config/parameters.yml indicando el camino del fichero de BD en '%kernel.root_dir%/data/symremedy.sqlite'
 	sed -i "/database_host/ i \    database_driver: pdo_sqlite\n    database_path: '%kernel.root_dir%/data/symremedy.sqlite'
 " app/config/parameters.yml

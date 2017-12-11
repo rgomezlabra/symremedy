@@ -1,0 +1,23 @@
+Curso CREACIÓN DE APLICACIONES WEB CON FRAMEWORK SYMFONY2 PARA DESARROLLO PHP
+Ejercicio 4
+===========
+
+Instalar dependencias del traductor (puede ser necesario incluir la versión del módulo):
+	composer require symfony/translation
+	composer require symfony/yaml
+	composer update
+
+Activar traductor de Symfony:
+	sed -i 's/#translator:/translator:/' app/config/config.yml
+
+Preparar las cadenas:
+- PHP: sustituir por   $this->get('translator')->trans('Cadena')
+- Twig: sustituir por  {% trans %}Cadena{% endtrans %}
+
+Crear directorio de traducción:
+	mkdir app/Resources/translations
+
+Crear los ficheros YAML de traducción en el directorio de traducción, con nombre
+messages.XX.yml, siendo XX el código del idioma (en, fr, etc).
+
+

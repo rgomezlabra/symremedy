@@ -1,19 +1,20 @@
-<h1>Lista de Dispositivos</h1>
+{% extends "UsSymremedyBundle::layout_admin.html.twig" %}
+{% set title = 'Lista de Dispositivos'|trans %}
+{% set active = 'dispositivos' %}
 
-<ul>
-    {% for device in devices %}
-        <li>
-            {% if device.category %}
-                {{ device.category.name }}:
-            {% endif %}
-            {{ device.name }}: {{ container.description }}
-            <a href="{{ device.id }}/show">Mostrar</a>
-            <a href="{{ device.id }}/edit">Editar</a>
-            <a href="{{ device.id }}/delete" onclick="return confirm('¿Borrar espacio {{ container.name }}?')">Borrar</a>
-        </li>
-    {% endfor %}
-</ul>
-<!--
-<p><a href="create">Crear dispositivo</a>
-   <a href="categories">Añadir categoría</a></p>
--->
+{% block content %}
+    <ul>
+        {% for device in devices %}
+            <li>{{ device.id }}: {{ device.name }}, {{ device.description }}
+
+                <a href="{{ device.id }}/show">Mostrar</a>
+                <a href="{{ device.id }}/edit">Editar</a>
+                <a href="{{ device.id }}/delete">Borrar</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="create">Crear dispositivo</a></p>
+    <p><a href="category/list">Lista de categorías</a> - <a href="category/create">Crear nueva categoría</a></p>
+    <p><a href="status/list">Lista de estados</a> - <a href="status/create">Crear nuevo estado</a> (pendiente)</p>
+{% endblock %}

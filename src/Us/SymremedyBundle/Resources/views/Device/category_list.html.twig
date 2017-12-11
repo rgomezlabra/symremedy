@@ -1,0 +1,19 @@
+    <h1>Lista de categoría dispositivos</h1>
+	<ul>
+	    {% for category in categorys %}
+	        <li>{{category.id}}: {{ category.name }} 
+
+                    <a href="{{category.id}}/show">Mostrar</a>
+                    <a href="{{category.id}}/edit">Editar</a>
+                    <a href="{{category.id}}/delete">Borrar</a>
+                </li>
+	    {% endfor %}
+	</ul>
+     <p> <a href="create">Crear nueva categoría</a>
+     </p>
+     <p> <a href="../list">Lista de dispositivos</a>
+         <a href="../create">Crear nuevo dispositivo</a>
+     </p>
+     <p> <a href="../status/list">Lista de estados</a>
+         <a href="../status/create">Crear nuevo estado</a> (pendiente)
+     </p>

@@ -1,0 +1,17 @@
+{% extends "UsSymremedyBundle::layout_admin.html.twig" %}
+{% set title = 'Datos del Dispositivo'|trans %}
+{% set active = 'dispositivos' %}
+
+{% block content %}
+    <ul>
+        <li>Identificador: {{ device.id }}</li>
+        <li>Descripción: {{ device.description }}</li>
+        <li>Nombre: {{ device.name }}</li>
+        <li>Contenedor: {{ device.container.name }}</li>
+        <li>Categoría: {{ device.category.name }}</li>
+        <li>Estado: {{ device.status }}</li>
+        <li>Fecha de adquisición: {{ device.acquiredat.date|date('Y-m-d') }}</li>
+        <li>Final de la garantía: {{ device.warrantyend.date|date('Y-m-d') }}</li>
+    </ul>
+    <p><a href="../list">Volver a lista de dispositivos</a></p>
+{% endblock %}

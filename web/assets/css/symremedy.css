@@ -1,0 +1,59 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 80px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  min-height: 70px;
+  background-color: #20527B;
+  padding-top: 1em;
+}
+
+.content-wrapper, .right-side {
+  background-color: #ecf0f5;
+  margin-top: 50px;
+}
+
+.navbar-custom, .navbar li.active a, .navbar li a:hover {
+    color: #FFFFFF;
+    background-color: #900;
+    /*font-weight: bold;*/
+}
+
+.footer nav, nav li a , .footer .nav li a,  .nav li.active a, .footer .nav li a:hover, .nav li a, .footer a{
+	/*background-color: #000;*/
+	border: 0;
+	color: #fff;
+}
+
+.nav li a:hover, .nav li.active a{
+	text-decoration: underline;
+}
+
+
+/*.navbar, .navbar-collapse, .navbar a, a.navbar-brand, .dropdown-menu li a { background-color: #000; font-weight: bold; color: #FFF; }*/
+.navbar-inverse .navbar-nav > li > a, a.navbar-brand {
+    color: #fff !important;
+}
+
+.breadcrumb {
+  margin-top: 10px;
+}
+
+.jumbotron {
+  background-color: transparent;
+  margin-top: -50px;
+}
+.btn {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}

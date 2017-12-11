@@ -1,0 +1,14 @@
+{% extends "UsSymremedyBundle::layout_admin.html.twig" %}
+{% set title = 'Editando Dispositivo'|trans %}
+{% set active = 'dispositivos' %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_start(form, {'attr': {novalidate: 'novalidate'}}) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    <p><a href="{% if id is defined %}../{% endif %}list">Volver a lista de dispositivos</a></p>
+
+    <p> Pendiente: si no existen categorias o estados no mostrar formulario sino aviso</p>
+{% endblock %}

@@ -8,3 +8,17 @@ Us\SymremedyBundle\Entity\Container\Container:
     - Type: integer
 
 
+Us\SymremedyBundle\Entity\Device\Device:
+    properties:
+        name:
+            - NotBlank: {groups: [creation, edition]} 
+        description:
+            - NotBlank: {groups: [creation, edition]}
+        container:
+            - NotBlank: {groups: [creation, edition]}
+        category:
+            - NotBlank: {groups: [creation, edition]}
+        acquiredat:
+            - NotBlank: {groups: [creation, edition]}
+        warrantyend:
+            - NotBlank: {groups: [creation, edition]}

@@ -1,1 +1,26 @@
-Hello World.
+{% extends "UsSymremedyBundle::layout_admin.html.twig" %}
+{% set active = 'admin' %}
+{% set title = 'Admin'|trans %}
+
+{% block css %}
+    {{ parent() }}
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+<h1>Bienvenido a Symremedy</h1>
+
+    <h2>Kit de emergencia Symremdy</h2>
+    <ul>
+        <li>Apague y encienda el ordenador</li>
+        <li>Si se enciende una luz y luego suena una campana, deje de enredar con el microondas</li>
+        <li>Vaya al monitor del ordenador y siga la ruta de los cables traseros</li>
+        <li>Si el primer cable le lleva a la pared vuelva a empezar</li>
+        <li>Siga el otro cable, verá una caja negra al final, ese es el ordenador</li>
+        <li>Apague y encienda el ordenador</li>
+    </ul>
+
+{% endblock %}

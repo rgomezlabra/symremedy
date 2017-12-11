@@ -1,13 +1,21 @@
-<h1>Edición de espacio</h1>
+{% extends "UsSymremedyBundle::layout_admin.html.twig" %}
+{% set title = 'Editando Espacio'|trans %}
+{% set active = 'espacios' %}
 
-{% if parent == "" %}
-    <p>Espacio raíz</p>
-{% else %}
-    <p>Espacio padre: {{ parent }}</p>
-{% endif %}
-{{ form_start(form) }}
+
+{% block content %}
+
+    <p>{{ dump() }}</p>
+
+    {% if parent == "" %}
+        <p>Espacio raíz</p>
+    {% else %}
+        <p>Espacio padre: {{ parent }}</p>
+    {% endif %}
+    {{ form_start(form) }}
     {{ form_widget(form) }}
-{{ form_end(form) }}
+    {{ form_end(form) }}
 
-<p><a href="{% if parent != "" or id is defined %}../{% endif %}list">Volver a lista de espacios</a></p>
+    <p><a href="{% if parent != "" or id is defined %}../{% endif %}list">Volver a lista de espacios</a></p>
 
+{% endblock %}

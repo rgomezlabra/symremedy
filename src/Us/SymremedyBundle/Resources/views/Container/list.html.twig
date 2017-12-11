@@ -1,33 +1,41 @@
-<h1>Lista de Espacios</h1>
+{% extends "UsSymremedyBundle::layout_admin.html.twig" %}
+{% set title = 'containers.list'|trans %}
+{% set active = 'espacios' %}
 
-{% macro container_tree(containers) %}
+
+{% block content %}
+
+    {% macro container_tree(containers) %}
+        {% import _self as macros %}
+        {% for container in containers %}
+            <li>
+                {% if container.category %}
+                    {{ container.category.name }}:
+                {% endif %}
+                {{ container.name }}: {{ container.description }}
+                <a href="{{ container.id }}/show">{% trans %}show{% endtrans %}</a>
+                <a href="{{ container.id }}/edit">{% trans %}edit{% endtrans %}</a>
+                {% if container.children is not empty %}
+                    <a href="{{ container.id }}/create">{% trans %}create.child.container{% endtrans %}</a>
+                    <ul>
+                        {{ macros.container_tree(container.children) }}
+                    </ul>
+                {% else %}
+                    <a href="{{ container.id }}/delete"
+                       onclick="return confirm('{% trans %}delete.container{% endtrans %} {{ container.name }}?')">{% trans %}delete{% endtrans %}</a>
+                    <a href="{{ container.id }}/create">Crear espacio hijo</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    {% endmacro %}
+
     {% import _self as macros %}
-    {% for container in containers %}
-        <li>
-            {% if container.category %}
-                {{ container.category.name }}:
-            {% endif %}
-            {{ container.name }}: {{ container.description }}
-            <a href="{{ container.id }}/show">Mostrar</a>
-            <a href="{{ container.id }}/edit">Editar</a>
-            {% if container.children is not empty %}
-                <a href="{{ container.id }}/create">Crear espacio hijo</a>
-                <ul>
-                    {{ macros.container_tree(container.children) }}
-                </ul>
-            {% else %}
-                <a href="{{ container.id }}/delete" onclick="return confirm('¿Borrar espacio {{ container.name }}?')">Borrar</a>
-                <a href="{{ container.id }}/create">Crear espacio hijo</a>
-            {% endif %}
-        </li>
-    {% endfor %}
-{% endmacro %}
 
-{% import _self as macros %}
+    <ul class="container-tree">
+        {{ macros.container_tree(containers) }}
+    </ul>
 
-<ul class="container-tree">
-    {{ macros.container_tree(containers) }}
-</ul>
-<p><a href="create">Crear espacio raíz</a>
-   <a href="categories">Añadir categoría</a>
-   <a href="../device/list">Listar dispositivos</a></p>
+    <p><a href="create">{% trans %}create.root.container{% endtrans %}</a>
+        <a href="categories">{% trans %}add.categories{% endtrans %}</a></p>
+
+{% endblock %}

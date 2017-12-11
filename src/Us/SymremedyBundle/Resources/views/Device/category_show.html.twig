@@ -1,0 +1,18 @@
+<h1>Datos de la categoría de dispositivos</h1>
+<ul>
+    <li>Identificador: {{ category.id }}</li>
+    <li>Nombre: {{ category.name }}</li>
+{% if devices|length > 0 %}
+    <li>Dispositivos:    
+        <ul>
+            {% for device in devices %}
+                <li>{{device.id}}: {{ device.name }}
+
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endif %}
+</ul>
+
+<p><a href="../list">Volver a lista de categorías de dispositivos</a></p>

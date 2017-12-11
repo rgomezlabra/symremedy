@@ -1,21 +1,29 @@
-<h1>Datos del Espacios</h1>
-<ul>
-    <li>Identificador: {{ container.id }}</li>
-{% if container.category %}
-    <li>Categoría: {{ container.category.name }}</li>
-{% endif %}
-    <li>Nombre: {{ container.name }}</li>
-    <li>Descripción: {{ container.description }}</li>
-    <li>Aforo: {{ container.capacity }}</li>
-{% if container.parent %}
-    <li>Contenedor padre: {{ container.parent.name }}</li>
-{% else %}
-    <li>Espacio contenedor raíz</li>
-{% endif %}
-{% if container.children|length > 0 %}
-    <li>Tiene {{ container.children|length }} recursos o espacios dependientes</li>
-{% else %}
-    <li>Sin recursos ni espacios dependientes</li>
-{% endif %}
-</ul>
-<p><a href="../list">Volver a lista de espacios</a></p>
+{% extends "UsSymremedyBundle::layout_admin.html.twig" %}
+{% set title = 'Datos del Espacio'|trans %}
+{% set active = 'espacios' %}
+
+
+{% block content %}
+
+    <ul>
+        <li>Identificador: {{ container.id }}</li>
+        {% if container.category %}
+            <li>Categoría: {{ container.category.name }}</li>
+        {% endif %}
+        <li>Nombre: {{ container.name }}</li>
+        <li>Descripción: {{ container.description }}</li>
+        <li>Aforo: {{ container.capacity }}</li>
+        {% if container.parent %}
+            <li>Contenedor padre: {{ container.parent.name }}</li>
+        {% else %}
+            <li>Espacio contenedor raíz</li>
+        {% endif %}
+        {% if container.children|length > 0 %}
+            <li>Tiene {{ container.children|length }} recursos o espacios dependientes</li>
+        {% else %}
+            <li>Sin recursos ni espacios dependientes</li>
+        {% endif %}
+    </ul>
+    <p><a href="{{ path('us_symremedy_container_list') }}">Volver a lista de espacios</a></p>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{# Agrupamos las páginas activas por categorías #}
+{% set centers_actives = ['centers', 'centers_add'] %}
+{% set issues_actives = ['issues', 'issue_add'] %}
+{% set users_actives = ['people', 'people_add'] %}
+
+<section class="sidebar">
+
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="{{ asset('assets/img/hombre.png') }}" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>Juan Palomo</p>
+          <!-- Status -->
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+
+      <!-- search form (Optional) -->
+      <!--form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form-->
+      <!-- /.search form -->
+
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu">
+        <li class="header">Admin</li>
+        <!-- Optionally, you can add icons to the links -->
+        <li ><a href="#"><i class="fa fa-cog"></i> <span>Intranet</span></a></li>
+        <li class="{% if active in issues_actives %}active {% endif %}treeview">
+          <a href="#"><i class="fa fa-fire-extinguisher" aria-hidden="true"></i> <span>Incidencias</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li{% if 'issues' == active %} class="active"{% endif %}><a href="#">Listar incidencias.</a></li>
+            <li{% if 'issue_add' == active %} class="active"{% endif %}><a href="#">Comunicar incidencia.</a></li>
+            <li{% if 'rooms' == active %} class="active"{% endif %}><a href="{{ path('us_symremedy_container_list') }}">Listar contenedores.</a></li>
+          </ul>
+        </li>
+
+        <li class="{% if active in centers_actives %}active {% endif %}treeview">
+          <a href="#"><i class="fa fa-university" aria-hidden="true"></i> <span>Espacios</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li{% if 'centers' == active %} class="active"{% endif %}><a href="{{ path('us_symremedy_container_list') }}">Listar Centros.</a></li>
+          </ul>
+        </li>
+
+
+        <li class="{% if active in users_actives %}active {% endif %}treeview">
+          <a href="#"><i class="fa fa-user"></i> <span>Usuarios</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li{% if 'people' == active %} class="active"{% endif %}><a href="#"> Listar usuarios.</a></li>
+            <li{% if 'people_add' == active %} class="active"{% endif %}><a href="#"> Nuevo usuario.</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>

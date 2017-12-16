@@ -13,16 +13,16 @@
                     {{ container.category.name }}:
                 {% endif %}
                 {{ container.name }}: {{ container.description }}
-                <a href="{{ container.id }}/show">{% trans %}show{% endtrans %}</a>
-                <a href="{{ container.id }}/edit">{% trans %}edit{% endtrans %}</a>
+                <a href="{{ container.id }}/show">{{ 'show'|trans }}</a>
+                <a href="{{ container.id }}/edit">{{ 'edit'|trans }}</a>
                 {% if container.children is not empty %}
-                    <a href="{{ container.id }}/create">{% trans %}create.child.container{% endtrans %}</a>
+                    <a href="{{ container.id }}/create">{{ 'create.child.container'|trans }}</a>
                     <ul>
                         {{ macros.container_tree(container.children) }}
                     </ul>
                 {% else %}
                     <a href="{{ container.id }}/delete"
-                       onclick="return confirm('{% trans %}delete.container{% endtrans %} {{ container.name }}?')">{% trans %}delete{% endtrans %}</a>
+                       onclick="return confirm('{{ 'delete.container'|trans }} {{ container.name }}?')">{{ 'delete'|trans }}</a>
                     <a href="{{ container.id }}/create">Crear espacio hijo</a>
                 {% endif %}
             </li>
@@ -35,7 +35,7 @@
         {{ macros.container_tree(containers) }}
     </ul>
 
-    <p><a href="create">{% trans %}create.root.container{% endtrans %}</a>
-        <a href="categories">{% trans %}add.categories{% endtrans %}</a></p>
+    <p><a href="create">{{ 'create.root.container'|trans }}</a>
+        <a href="categories">{{ 'add.categories'|trans }}</a></p>
 
 {% endblock %}

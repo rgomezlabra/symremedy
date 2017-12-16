@@ -20,4 +20,6 @@ Crear directorio de traducción:
 Crear los ficheros YAML de traducción en el directorio de traducción, con nombre
 messages.XX.yml, siendo XX el código del idioma (en, fr, etc).
 
+Comprobar la sintaxis de los ficheros de idiomas:
+	php bin/console lint:yaml app/Resources/translations
 

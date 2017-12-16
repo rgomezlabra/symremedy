@@ -6,24 +6,20 @@
 {% block content %}
 
     <ul>
-        <li>Identificador: {{ container.id }}</li>
+        <li>{{ 'identificator'|trans }}: {{ container.id }}</li>
         {% if container.category %}
-            <li>Categoría: {{ container.category.name }}</li>
+            <li>{{ 'category'|trans }}: {{ container.category.name }}</li>
         {% endif %}
-        <li>Nombre: {{ container.name }}</li>
-        <li>Descripción: {{ container.description }}</li>
-        <li>Aforo: {{ container.capacity }}</li>
+        <li>{{ 'name'|trans }}: {{ container.name }}</li>
+        <li>{{ 'description'|trans }}: {{ container.description }}</li>
+        <li>{{ 'capacity'|trans }}: {{ container.capacity }}</li>
         {% if container.parent %}
-            <li>Contenedor padre: {{ container.parent.name }}</li>
+            <li>{{ 'parent.container'|trans }}: {{ container.parent.name }}</li>
         {% else %}
-            <li>Espacio contenedor raíz</li>
+            <li>{{ 'root.container'|trans }}</li>
         {% endif %}
-        {% if container.children|length > 0 %}
-            <li>Tiene {{ container.children|length }} recursos o espacios dependientes</li>
-        {% else %}
-            <li>Sin recursos ni espacios dependientes</li>
-        {% endif %}
+        <li>{{ 'has.children'|transchoice(container.children|length) }}</li>
     </ul>
-    <p><a href="{{ path('us_symremedy_container_list') }}">Volver a lista de espacios</a></p>
+    <p><a href="{{ path('us_symremedy_container_list') }}">{{ 'back.containers.list'|trans }}</a></p>
 
 {% endblock %}

@@ -1,4 +1,5 @@
 add.categories: Add categories
+back.containers.list: Return to containers list
 capacity: Capacity
 category: Category
 containers.list: Containers List
@@ -10,14 +11,13 @@ delete.container: Delete container
 description: Description
 edit: Edit
 edit.container: Edit container
+has.children: "{0}No child container|{1}There is a child container|]1,Inf]There are %count% child containers"
 identificator: Identificator
 list: List
 list.order: List order must be ASC or DESC
 name: Name
 no.container.found: No container found for id
 no.parent.found: No container found for parent id
-no.children: Sin recursos ni espacios dependientes
 parent.container: Parent container
-return.containers.list: Return to containers list
 root.container: Root container
 show: Show

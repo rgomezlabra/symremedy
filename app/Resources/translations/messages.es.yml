@@ -1,4 +1,5 @@
 add.categories: Añadir categorías
+back.containers.list: Volver a lista de espacios
 capacity: Aforo
 category: Categoría
 containers.list: Lista de Espacios
@@ -10,6 +11,7 @@ delete.container: ¿Borrar contenedor
 description: Descripción
 edit: Editar
 edit.container: Editar espacio
+has.children: "{0}Sin espacios hijos|{1}Tiene un espacio hijo|]1,Inf]Tiene %count% espacios hijos"
 identificator: Identificador
 list: Listar
 list.order: El orden de listado debe ser ASC o DESC
@@ -17,6 +19,5 @@ name: Nombre
 no.container.found: Contenedor no encontrado para el id.
 no.parent.found: Contenedor padre no encontrado para el id.
 parent.container: Espacio padre
-return.containers.list: Volver a lista de espacios
 root.container: Espacio contenedor raíz
 show: Mostrar
